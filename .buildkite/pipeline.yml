@@ -1,20 +1,20 @@
 steps:
   - label: preview dev
     commands:
-      - preview.sh dev
+      - ./preview.sh dev
 
   - label: preview uat
     commands:
-      - preview.sh uat
+      - ./preview.sh uat
 
   - wait
 
   - label: deploy dev
     commands:
-      - deploy.sh dev
+      - ./deploy.sh dev
 
   - wait
 
   - label: deploy uat
     commands:
-      - deploy.sh uat
+      - ./deploy.sh uat
