@@ -14,4 +14,4 @@ cd server || exit
 
 yarn install
 pulumi stack select "$environment"
-pulumi up --yes
+pulumi up --yes --non-interactive --color always
