@@ -43,9 +43,9 @@ class _HandleCardPayment extends React.Component {
 
     componentDidMount() {
 
-        const environment = process.env.REACT_APP_ENVIRONMENT;
+        const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
-        fetch(`https://stripe-api-${environment}.jaimen-pulumi.com/payment-intent/`)
+        fetch(`https://${apiBaseUrl}/payment-intent/`)
             .then((res) => {
                 if (res.status === 200) {
                     return res.json();

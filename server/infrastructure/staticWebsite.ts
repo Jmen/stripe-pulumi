@@ -11,6 +11,10 @@ export function createWebsiteBucket(domain: string, environment, buildDirectory)
     });
 
     glob("**/*.*", { cwd: buildDirectory }, function (er, files) {
+
+        if (files.length == 0)
+            throw new Error("No files to upload, has the website been built? run 'yarn build' in the client folder");
+
         for (const file of files) {
             let object = new aws.s3.BucketObject(file, {
                 bucket: siteBucket,

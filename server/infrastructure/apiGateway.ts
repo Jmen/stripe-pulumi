@@ -4,9 +4,9 @@ import * as awsx from "@pulumi/awsx";
 import { getPaymentIntentHandler } from "../entrypoints/paymentIntent";
 import { getWebhookHandler } from "../entrypoints/webhook";
 
-export function createApiGateway(region, domain, sslCertValidationIssues, provider) {
+export function createApiGateway(region, domain, sslCertValidationIssues, provider, environment) {
 
-    let apiGateway = new awsx.apigateway.API(`stripe-${region}`, {
+    let apiGateway = new awsx.apigateway.API(`stripe-${region}-${environment}`, {
         routes: [{
             path: "/payment-intent",
             method: "GET",

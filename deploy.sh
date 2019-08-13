@@ -4,7 +4,7 @@ environment="$1"
 
 cd client || exit
 
-echo "REACT_APP_ENVIRONMENT=$environment" > .env
+echo "REACT_APP_API_BASE_URL=stripe-api-${environment}.jaimen-pulumi.co.uk" > .env
 
 yarn install
 yarn build

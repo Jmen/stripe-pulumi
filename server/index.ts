@@ -9,8 +9,10 @@ import { createAliasRecord } from "./infrastructure/dnsRecord";
 import { createWebsiteBucket } from "./infrastructure/staticWebsite";
 
 const parentDomain = new pulumi.Config().require("parentDomain");
+const backendComponentName = new pulumi.Config().require("backendComponentName");
 const environment = pulumi.getStack();
-const domain = `stripe-api-${environment}.${parentDomain}`;
+
+const domain = `${backendComponentName}-${environment}.${parentDomain}`;
 const regions = ['us-east-1', 'eu-west-1', 'ap-southeast-2'];
 
 const providers = createProvidersFor(regions);
@@ -31,7 +33,7 @@ const sslCertValidationIssues = waitForSSLCertificateVerification(regions, sslCe
 
 for (const region of regions) {
 
-    const apiGatewayCustomDomain = createApiGateway(region, domain, sslCertValidationIssues, providers[region]);
+    const apiGatewayCustomDomain = createApiGateway(region, domain, sslCertValidationIssues, providers[region], environment);
 
     createAliasRecord(region, apiGatewayCustomDomain, hostedZone, sslCertValidationIssues);
 }

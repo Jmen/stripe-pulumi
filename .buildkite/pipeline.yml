@@ -7,6 +7,10 @@ steps:
     commands:
       - ./preview.sh uat
 
+  - label: preview prod
+    commands:
+      - ./preview.sh prod
+
   - wait
 
   - label: deploy dev
@@ -18,3 +22,9 @@ steps:
   - label: deploy uat
     commands:
       - ./deploy.sh uat
+
+  - wait
+
+  - label: deploy prod
+    commands:
+      - ./deploy.sh prod
