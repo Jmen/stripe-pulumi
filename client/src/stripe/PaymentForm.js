@@ -3,26 +3,6 @@ import { CardElement, injectStripe } from "react-stripe-elements";
 
 const PAYMENT_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-const createOptions = (padding) => {
-    return {
-        style: {
-            base: {
-                fontSize: '18px',
-                color: '#424770',
-                letterSpacing: '0.025em',
-                fontFamily: 'Source Code Pro, monospace',
-                '::placeholder': {
-                    color: '#aab7c4',
-                },
-                ...(padding ? {padding} : {}),
-            },
-            invalid: {
-                color: '#9e2146',
-            },
-        },
-    };
-};
-
 class _PaymentForm extends React.Component {
     state = {
         clientSecret: null,
@@ -88,12 +68,32 @@ class _PaymentForm extends React.Component {
         }
     };
 
+    createOptions = (padding) => {
+        return {
+            style: {
+                base: {
+                    fontSize: '18px',
+                    color: '#424770',
+                    letterSpacing: '0.025em',
+                    fontFamily: 'Source Code Pro, monospace',
+                    '::placeholder': {
+                        color: '#aab7c4',
+                    },
+                    ...(padding ? {padding} : {}),
+                },
+                invalid: {
+                    color: '#9e2146',
+                },
+            },
+        };
+    };
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
                     stripe.handleCardPayment
-                    <CardElement {...createOptions()} />
+                    <CardElement {...this.createOptions()} />
                 </label>
                 {this.state.error && <div className="error">{this.state.error}</div>}
                 {this.state.message && (
