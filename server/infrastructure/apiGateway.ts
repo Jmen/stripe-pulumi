@@ -3,6 +3,7 @@ import * as awsx from "@pulumi/awsx";
 
 import { getPaymentIntentHandler } from "../entrypoints/paymentIntent";
 import { getWebhookHandler } from "../entrypoints/webhook";
+import { getCheckoutSession } from "../entrypoints/checkoutSession";
 
 export function createApiGateway(region, domain, sslCertValidationIssues, provider, environment) {
 
@@ -11,6 +12,11 @@ export function createApiGateway(region, domain, sslCertValidationIssues, provid
             path: "/payment-intent",
             method: "GET",
             eventHandler: getPaymentIntentHandler(),
+        },
+        {
+            path: "/checkout-session",
+            method: "GET",
+            eventHandler: getCheckoutSession(),
         },
         {
             path: "/webhook",
