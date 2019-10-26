@@ -3,10 +3,10 @@ const stripeSecretKey = process.env.StripeSecretKey;
 if (!stripeSecretKey)
     throw Error("missing export StripeSecretKey");
 
-const stripe = require('stripe')(stripeSecretKey);
-
 export function getCheckoutSession() {
     return async () => {
+
+        const stripe = require('stripe')(stripeSecretKey);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -21,6 +21,8 @@ export function getCheckoutSession() {
             success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
             cancel_url: 'https://example.com/cancel',
         });
+
+        console.log(JSON.stringify(session));
 
         return {
             statusCode: 200,
