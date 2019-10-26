@@ -29,7 +29,7 @@ export function getCheckoutSession() {
             headers: {
                 "Access-Control-Allow-Origin": "*"
             },
-            body: JSON.stringify({ checkoutSession: session }),
+            body: JSON.stringify({ checkoutSession: session.id }),
         }
     };
 }
