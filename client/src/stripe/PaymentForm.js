@@ -68,7 +68,7 @@ class _PaymentForm extends React.Component {
         }
     };
 
-    createOptions = (padding) => {
+    createOptions = () => {
         return {
             style: {
                 base: {
@@ -76,14 +76,9 @@ class _PaymentForm extends React.Component {
                     color: '#424770',
                     letterSpacing: '0.025em',
                     fontFamily: 'Source Code Pro, monospace',
-                    '::placeholder': {
-                        color: '#aab7c4',
-                    },
-                    ...(padding ? {padding} : {}),
+                    '::placeholder': { color: '#aab7c4' },
                 },
-                invalid: {
-                    color: '#9e2146',
-                },
+                invalid: { color: '#9e2146' },
             },
         };
     };
