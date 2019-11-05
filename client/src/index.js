@@ -2,16 +2,28 @@
 /* eslint-disable no-console, react/no-multi-comp */
 import React from 'react';
 import { render } from 'react-dom';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import {Route, BrowserRouter as Router, Link} from 'react-router-dom';
 import PaymentPage from "./stripe/PaymentPage";
 import CheckoutPage from "./stripe/CheckoutPage";
 
+const Nav = () => {
+    return (
+        <>
+            <p><Link to='/self-hosted-page'>Self Hosted page using Payment Intents</Link></p>
+            <p><Link to='/stripe-hosted-page'>Stripe Hosted page using Checkout</Link></p>
+        </>
+    );
+};
+
 const App = () => {
     return (
-        <Router>
-            <Route path='/' exact component={PaymentPage}/>
-            <Route path='/checkout' exact component={CheckoutPage}/>
-        </Router>
+        <>
+            <Router>
+                <Nav/>
+                <Route path='/self-hosted-page' exact component={PaymentPage}/>
+                <Route path='/stripe-hosted-page' exact component={CheckoutPage}/>
+            </Router>
+        </>
     );
 };
 
