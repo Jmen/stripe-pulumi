@@ -20,6 +20,7 @@ class _PaymentForm extends React.Component {
                 if (res.status === 200) {
                     return res.json();
                 } else {
+                    console.log(`payment intent api did not return 200  ${JSON.stringify(res)}`)
                     return null;
                 }
             })

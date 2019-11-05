@@ -4,11 +4,13 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import PaymentPage from "./stripe/PaymentPage";
+import CheckoutPage from "./stripe/CheckoutPage";
 
 const App = () => {
     return (
         <Router>
             <Route path='/' exact component={PaymentPage}/>
+            <Route path='/checkout' exact component={CheckoutPage}/>
         </Router>
     );
 };
